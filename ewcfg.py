@@ -3487,7 +3487,7 @@ weather_list = [
 	),
 	EwWeather(
 		name = "rainy",
-		sunrise = "Rain gently beats against the pavement as the sky starts to lighten.",
+		sunrise = "Rain gently beats against the pavement as the sky begins to lighten.",
 		day = "Rain pours down, collecting in oily rivers that run down sewer drains.",
 		sunset = "Distant thunder rumbles as it rains, the sky now growing dark.",
 		night = "Silverish clouds hide the moon, and the night is black in the heavy rain."
@@ -3495,7 +3495,7 @@ weather_list = [
 	EwWeather(
 		name = "windy",
 		sunrise = "Wind whips through the city streets as the sun crests over the horizon.",
-		day = "Paper and debris are whipped through the city streets by the winds, buffetting pedestrians.",
+		day = "Paper and debris are whipped through the city streets by the winds, buffeting pedestrians.",
 		sunset = "The few trees in the city bend and strain in the wind as the sun slowly sets.",
 		night = "The dark streets howl, battering apartment windows with vicious night winds."
 	),
@@ -3516,7 +3516,7 @@ weather_list = [
 	EwWeather(
 		name = "snow",
 		sunrise = "The morning sun glints off the thin layer or powdery snow that blankets the city.",
-		day = "Flakes of snow clump together and whip through the bitter cold air in the winder wind.",
+		day = "Flakes of snow clump together and whip through the bitter cold air in the winter wind.",
 		sunset = "The cold air grows colder as the sky darkens and the snow piles higher in the streets.",
 		night = "Icy winds whip through the city, white snowflakes glittering in the black of night."
 	),
@@ -3772,7 +3772,7 @@ food_list = [
 		str_name = 'slice of cheese pizza',
 		vendors = [vendor_pizzahut],
 		str_eat = "You nab a hot, greasy slice of that cheesy pie and cram it into your eager craw! Radical, dude!!",
-		str_desc = "A supposedly hot slice of cheese pizza. Some of it’s pre-grated cheese hasn't fully melted yet, and it’s crust is hard and chewy. Reality is a cruel mistress."
+		str_desc = "A supposedly hot slice of cheese pizza. Some of its pre-grated cheese hasn't fully melted yet, and its crust is hard and chewy. Reality is a cruel mistress."
 	),
 	EwFood(
 		id_food = "pepperoni",
@@ -3787,7 +3787,7 @@ food_list = [
 		vendors = [vendor_pizzahut],
 		str_eat = "You chomp right into the salty, spicy sausage slice, bro! Cowabunga, my dude!!",
 
-		str_desc = "An apparently appetizing slice of pepperoni pizza. It’s crust is limp and soggy from the excess grease it's slathered in, which is about the only thing you can taste on it. Pure Bliss."
+		str_desc = "An apparently appetizing slice of pepperoni pizza. Its crust is limp and soggy from the excess grease it's slathered in, which is about the only thing you can taste on it. Pure Bliss."
 
 	),
 	EwFood(
@@ -3801,7 +3801,7 @@ food_list = [
 		inebriation = 0,
 		str_name = 'slice of Meat Lover\'s® pizza',
 		vendors = [vendor_pizzahut],
-		str_eat = "You happily scarf down this carnivore's delight! You’re neausiating both metaphorically and literally by the sheer volume of animal fat you're ingesting! Tubular!! Hell yes!!",
+		str_eat = "You happily scarf down this carnivore's delight! You’re nauseating both metaphorically and literally by the sheer volume of animal fat you're ingesting! Tubular!! Hell yes!!",
 		str_desc = "A thoroughly revolting slice Meat Lover's® pizza. You like meat, but you aren't sure if you're ready to love again."
 	),
 	EwFood(
@@ -4214,7 +4214,7 @@ food_list = [
 		vendors = [vendor_seafood, vendor_bazaar],
 		str_eat = "You don’t really know how to eat caviar, so you just scoop some of the disgusting slop out of the tin with your bare hands and get crushed fish eggs all over your mouth "
 				  "as you shovel it into your uncultured maw. It tastes, uh… high class? This was a waste of money.",
-		str_desc = "A small tin of wild, matured Juvie’s roe. A highly sought after delicacy by the upper crust of the critical improshived juveniles of the city. "
+		str_desc = "A small tin of wild, matured Juvie’s roe. A highly sought after delicacy by the upper crust of the critical impoverished juveniles of the city. "
 				   "Considered by many to be the height of luxury, an utterly decadent show of unrivalled epicurean ecstasy. "
 				   "Sure, some of the unwashed masses COULD describe the understated burst of flavor non-existent, reducing the whole dish to a weird, goopy mess, but you know better."
 
