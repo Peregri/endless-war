@@ -27,7 +27,7 @@ CREATE TABLE users (
 	bounty bigint NOT NULL DEFAULT '0',
 	inebriation int NOT NULL DEFAULT '0',
 	faction varchar(32) NOT NULL default '',
-	poi varchar(64) NOT NULL default 'downtown',
+	poi varchar(64) NOT NULL default 'classroom',
 	life_state int NOT NULL DEFAULT '1',
 	busted int NOT NULL DEFAULT '0',
 	rr_challenger_id varchar(128) NOT NULL DEFAULT '',
@@ -49,7 +49,6 @@ CREATE TABLE users (
 	time_lastenlist int NOT NULL DEFAULT '0',
 	active_slimeoid int NOT NULL DEFAULT '-1',
 	has_soul int NOT NULL DEFAULT '1',
-
 
 	CONSTRAINT id_user_server PRIMARY KEY (id_user, id_server)
 );
@@ -76,6 +75,8 @@ CREATE TABLE markets (
 	donated_poudrins bigint NOT NULL DEFAULT '0',
 	caught_fish int NOT NULL DEFAULT '0',
 	splattered_slimes bigint NOT NULL DEFAULT '0',
+	horseman_deaths int NOT NULL DEFAULT '0',
+	horseman_timeofdeath bigint NOT NULL DEFAULT '0',
 
 	PRIMARY KEY (id_server)
 );
@@ -209,7 +210,7 @@ CREATE TABLE enemies (
 	ai varchar(32) NOT NULL DEFAULT '',
 	enemytype varchar(32) NOT NULL DEFAULT '',
 	attacktype varchar(32) NOT NULL DEFAULT '',
-	display_name varchar(32) NOT NULL DEFAULT '',
+	display_name varchar(256) NOT NULL DEFAULT '',
 	identifier varchar(32) NOT NULL DEFAULT '',
 	level int NOT NULL DEFAULT '0',
 	poi varchar(64) NOT NULL DEFAULT '',
@@ -363,4 +364,14 @@ CREATE TABLE world_events_prop (
 	FOREIGN KEY (id_event)
 		REFERENCES world_events(id_event)
 		ON DELETE CASCADE
+);
+
+CREATE TABLE ads (
+	id_ad int NOT NULL AUTO_INCREMENT,
+	id_server varchar(128) NOT NULL,
+	id_sponsor varchar(128) NOT NULL DEFAULT '',
+	content varchar(500) NOT NULL DEFAULT '',
+	time_expir int NOT NULL DEFAULT '0',
+
+	PRIMARY KEY (id_ad)
 );
