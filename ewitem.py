@@ -1375,12 +1375,17 @@ def gen_item_props(item):
 			'acquisition': item.acquisition,
 		}
 	elif item.item_type == ewcfg.it_weapon:
+		captcha = ""
+		if ewcfg.weapon_class_captcha in item.classes:
+			captcha = ewutils.generate_captcha(n = item.captcha_length)
+
 		item_props = {
 			"weapon_type": item.id_weapon,
 			"weapon_name": "",
 			"weapon_desc": item.str_description,
 			"married": "",
-			"ammo": item.clip_size
+			"ammo": item.clip_size,
+			"captcha": captcha
 		}
 
 	elif item.item_type == ewcfg.it_cosmetic:
@@ -1543,8 +1548,6 @@ def remove_from_trades(id_item):
 				return
 
 
-
-# TODO: Remove after Double Halloween
 async def makecostume(cmd):
 	costumekit = find_item(item_search="costumekit", id_user=cmd.message.author.id, id_server=cmd.message.server.id if cmd.message.server is not None else None)
 
