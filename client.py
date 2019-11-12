@@ -49,6 +49,8 @@ import ewfaction
 import ewapt
 import ewweather
 import ewworldevent
+import ewdungeons
+import ewads
 import ewdebug
 
 from ewitem import EwItem
@@ -298,6 +300,12 @@ cmd_map = {
 	# check available stocks
 	ewcfg.cmd_stocks: ewmarket.stocks,
 
+	# ads
+	ewcfg.cmd_advertise: ewads.advertise,
+	ewcfg.cmd_ads: ewads.ads_look,
+	ewcfg.cmd_confirm: ewcmd.confirm,
+	ewcfg.cmd_cancel: ewcmd.cancel,
+
 	# show player inventory
 	ewcfg.cmd_inventory: ewitem.inventory_print,
 	ewcfg.cmd_inventory_alt1: ewitem.inventory_print,
@@ -385,6 +393,7 @@ cmd_map = {
 	ewcfg.cmd_adorn: ewcosmeticitem.adorn,
 	ewcfg.cmd_dedorn: ewcosmeticitem.dedorn,
 	ewcfg.cmd_create: ewkingpin.create,
+	ewcfg.cmd_exalt: ewkingpin.exalt,
 	ewcfg.cmd_dyecosmetic: ewcosmeticitem.dye,
 	ewcfg.cmd_dyecosmetic_alt1: ewcosmeticitem.dye,
 	ewcfg.cmd_dyecosmetic_alt2: ewcosmeticitem.dye,
@@ -474,7 +483,7 @@ cmd_map = {
 	ewcfg.cmd_battlenegaslimeoid_alt1: ewslimeoid.negaslimeoidbattle,
 
 	# Enemies
-	ewcfg.cmd_summonenemy: ewhunting.summon_enemy,
+	ewcfg.cmd_summonenemy: ewhunting.summonenemy,
 
 	# troll romance
 	ewcfg.cmd_add_quadrant: ewquadrants.add_quadrant,
@@ -544,6 +553,11 @@ async def on_member_remove(member):
 	# Kill players who leave the server.
 	try:
 		user_data = EwUser(member = member)
+
+		# don't kill players who haven't cleared the tutorial yet
+		if user_data.poi in ewcfg.tutorial_pois:
+			return
+
 		user_data.die(cause = ewcfg.cause_leftserver)
 		user_data.persist()
 
@@ -936,6 +950,9 @@ async def on_ready():
 					# Remove fish offers which have timed out
 					ewfish.kill_dead_offers(id_server = server.id)
 
+					# kill advertisements that have timed out
+					ewads.delete_expired_ads(id_server = server.id)
+
 					await ewdistrict.give_kingpins_slime_and_decay_capture_points(id_server = server.id)
 
 					await ewmap.kick(server.id)
@@ -1000,6 +1017,10 @@ async def on_member_join(member):
 		member = member,
 		server = member.server
 	)
+	user_data = EwUser(member = member)
+
+	if user_data.poi in ewcfg.tutorial_pois:
+		await ewdungeons.begin_tutorial(member)
 
 @client.event
 async def on_message_delete(message):
@@ -1152,7 +1173,10 @@ async def on_message(message):
 		global cmd_map
 		cmd_fn = cmd_map.get(cmd)
 
-		if cmd_fn != None:
+		if user_data.poi in ewcfg.tutorial_pois:	
+			return await ewdungeons.tutorial_cmd(cmd_obj)
+
+		elif cmd_fn != None:
 			# Execute found command
 			return await cmd_fn(cmd_obj)
 
