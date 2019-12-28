@@ -51,6 +51,7 @@ import ewweather
 import ewworldevent
 import ewdungeons
 import ewads
+import ewbook
 import ewdebug
 
 from ewitem import EwItem
@@ -92,13 +93,11 @@ cmd_map = {
 	# Fix your jammed gun
 	ewcfg.cmd_unjam: ewwep.unjam,
 
-	# Get a weapon into your inventory
-	#ewcfg.cmd_arm: ewwep.arm,
-	#ewcfg.cmd_arsenalize: ewwep.arm,
-
 	# Choose your weapon
 	ewcfg.cmd_equip: ewwep.equip,
-
+	ewcfg.cmd_arm: ewwep.equip,
+	ewcfg.cmd_arsenalize: ewwep.equip,
+	
 	# Kill yourself
 	ewcfg.cmd_suicide: ewwep.suicide,
 	ewcfg.cmd_suicide_alt1: ewwep.suicide,
@@ -117,6 +116,7 @@ cmd_map = {
 	
 	# Crush a poudrin to get some slime.
 	ewcfg.cmd_crush: ewjuviecmd.crush,
+	ewcfg.cmd_crush_alt1: ewjuviecmd.crush,
 
 	# move from juvenile to one of the armies (rowdys or killers)
 	ewcfg.cmd_enlist: ewjuviecmd.enlist,
@@ -136,16 +136,23 @@ cmd_map = {
 	# Show a player's combat data.
 	ewcfg.cmd_data: ewcmd.data,
 
+	# Show a player's mutations.
+	ewcfg.cmd_mutations: ewcmd.mutations,
+	ewcfg.cmd_mutations_alt_1: ewcmd.mutations,
+
 	# sap system
 	ewcfg.cmd_view_sap: ewcmd.view_sap,
 	ewcfg.cmd_harden_sap: ewwep.harden_sap,
+	ewcfg.cmd_harden_sap_alt1: ewwep.harden_sap,
 	ewcfg.cmd_liquefy_sap: ewwep.liquefy_sap,
+
 	
 	# combat sap commands
 	ewcfg.cmd_taunt: ewwep.taunt,
 	ewcfg.cmd_aim: ewwep.aim,
 	ewcfg.cmd_dodge: ewwep.dodge,
 	ewcfg.cmd_dodge_alt1: ewwep.dodge,
+	ewcfg.cmd_dodge_alt2: ewwep.dodge,
 
 	# Check how hungry you are.
 	ewcfg.cmd_hunger: ewcmd.hunger,
@@ -162,10 +169,19 @@ cmd_map = {
 	# Ghosts can BOO 
 	ewcfg.cmd_boo: ewcmd.boo,
 	#ewcfg.cmd_spook: ewcmd.spook,
+	
+	# Juvies can dance
+	ewcfg.cmd_dance: ewcmd.dance,
+	
+	# Terezi Gang can flip coins
+	ewcfg.cmd_coinflip: ewcmd.coinflip,
     
 	# Make a costume for Double Halloween
 	#ewcfg.cmd_makecostume: ewitem.makecostume,
 
+	# Show the total of negative slime in the market.
+	ewcfg.cmd_negapool: ewspooky.negapool,
+	
 	# Show the total of negative slime in the world.
 	ewcfg.cmd_negaslime: ewspooky.negaslime,
 	
@@ -188,8 +204,8 @@ cmd_map = {
 	ewcfg.cmd_knock: ewapt.knock,
 	#ewcfg.cmd_trickortreat: ewapt.trickortreat,
 	ewcfg.cmd_breaklease: ewapt.cancel,
-	ewcfg.cmd_aquarium: ewapt.aquarium,
-	ewcfg.cmd_propstand: ewapt.propstand,
+	ewcfg.cmd_aquarium: ewapt.lobbywarning,
+	ewcfg.cmd_propstand: ewapt.lobbywarning,
 	ewcfg.cmd_releaseprop: ewapt.releaseprop,
 	ewcfg.cmd_releasefish: ewapt.releasefish,
 	ewcfg.cmd_smoke: ewcosmeticitem.smoke,
@@ -206,6 +222,7 @@ cmd_map = {
 	ewcfg.cmd_push: ewcmd.push,
 	ewcfg.cmd_push_alt_1: ewcmd.push,
 
+	ewcfg.cmd_purify: ewcmd.purify,
 
 	ewcfg.cmd_store: ewcmd.store_item,
 	ewcfg.cmd_take: ewcmd.remove_item,
@@ -213,9 +230,13 @@ cmd_map = {
 	ewcfg.cmd_fridge: ewapt.lobbywarning,
 	ewcfg.cmd_closet: ewapt.lobbywarning,
 	ewcfg.cmd_decorate: ewapt.lobbywarning,
+	ewcfg.cmd_shelve: ewapt.lobbywarning,
+	ewcfg.cmd_shelve_alt_1: ewapt.lobbywarning,
 	ewcfg.cmd_unfridge: ewapt.lobbywarning,
 	ewcfg.cmd_uncloset: ewapt.lobbywarning,
 	ewcfg.cmd_undecorate: ewapt.lobbywarning,
+	ewcfg.cmd_unshelve: ewapt.lobbywarning,
+	ewcfg.cmd_unshelve_alt_1: ewapt.lobbywarning,
 	ewcfg.cmd_freeze: ewapt.lobbywarning,
 	ewcfg.cmd_aptname: ewapt.lobbywarning,
 	ewcfg.cmd_aptdesc: ewapt.lobbywarning,
@@ -376,6 +397,10 @@ cmd_map = {
 	# Check your current POI capture progress
 	ewcfg.cmd_capture_progress: ewdistrict.capture_progress,
 
+	# Change your current POI capture progress
+	ewcfg.cmd_annex: ewdistrict.annex,
+	ewcfg.cmd_annex_alt1: ewdistrict.annex,
+
 	# link to the world map
 	ewcfg.cmd_map: ewcmd.map,
 	ewcfg.cmd_transportmap: ewcmd.transportmap,
@@ -419,6 +444,9 @@ cmd_map = {
 	# drop item into your current district
 	ewcfg.cmd_discard: ewitem.discard,
 	ewcfg.cmd_discard_alt1: ewitem.discard,
+	
+	# delete a food item from your inventory
+	ewcfg.cmd_trash: ewitem.trash,
 
 	# recycle your trash at the slimecorp recycling plant
 	ewcfg.cmd_recycle: ewcmd.recycle,
@@ -520,6 +548,41 @@ cmd_map = {
 	ewcfg.cmd_piss: ewcmd.piss,
 	ewcfg.cmd_fursuit: ewcmd.fursuit,
 
+	# BOOK COMMANDS OH YEAH
+	ewcfg.cmd_beginmanuscript: ewbook.begin_manuscript,
+	ewcfg.cmd_beginmanuscript_alt_1: ewbook.begin_manuscript,
+	ewcfg.cmd_beginmanuscript_alt_2: ewbook.begin_manuscript,
+	ewcfg.cmd_setpenname: ewbook.set_pen_name,
+	ewcfg.cmd_setpenname_alt_1: ewbook.set_pen_name,
+	ewcfg.cmd_settitle: ewbook.set_title,
+	ewcfg.cmd_settitle_alt_1: ewbook.set_title,
+	ewcfg.cmd_setgenre: ewbook.set_genre,
+	ewcfg.cmd_editpage: ewbook.edit_page,
+	ewcfg.cmd_viewpage: ewbook.view_page,
+	ewcfg.cmd_checkmanuscript: ewbook.check_manuscript,
+	ewcfg.cmd_publishmanuscript: ewbook.publish_manuscript,
+	ewcfg.cmd_readbook: ewbook.read_book,
+	ewcfg.cmd_nextpage: ewbook.next_page,
+	ewcfg.cmd_nextpage_alt_1: ewbook.next_page,
+	ewcfg.cmd_previouspage: ewbook.previous_page,
+	ewcfg.cmd_previouspage_alt_1: ewbook.previous_page,
+	ewcfg.cmd_previouspage_alt_2: ewbook.previous_page,
+	ewcfg.cmd_browsezines: ewbook.browse_zines,
+	ewcfg.cmd_buyzine: ewbook.order_zine,
+	ewcfg.cmd_buyzine_alt_1: ewbook.order_zine,
+	ewcfg.cmd_rate: ewbook.rate_zine,
+	ewcfg.cmd_rate_alt_1: ewbook.rate_zine,
+	ewcfg.cmd_rate_alt_2: ewbook.rate_zine,
+	ewcfg.cmd_setpages: ewbook.set_length,
+	ewcfg.cmd_setpages_alt_1: ewbook.set_length,
+	ewcfg.cmd_setpages_alt_2: ewbook.set_length,
+	ewcfg.cmd_takedown: ewbook.take_down_zine,
+	ewcfg.cmd_takedown_alt_1: ewbook.take_down_zine,
+	ewcfg.cmd_takedown_alt_2: ewbook.take_down_zine,
+	ewcfg.cmd_untakedown: ewbook.untake_down_zine,
+	ewcfg.cmd_untakedown_alt_1: ewbook.untake_down_zine,
+	ewcfg.cmd_untakedown_alt_2: ewbook.untake_down_zine,
+
 	# restores poi roles to their proper names, only usable by admins
 	ewcfg.cmd_restoreroles: ewrolemgr.restoreRoleNames,
 
@@ -547,6 +610,23 @@ cmd_map = {
 	ewcfg.cmd_remove_offer: ewmarket.remove_offer,
 	ewcfg.cmd_completetrade: ewmarket.complete_trade,
 	ewcfg.cmd_canceltrade: ewmarket.cancel_trade,
+
+	# Praying at the base of ENDLESS WAR.
+	ewcfg.cmd_pray: ewcmd.pray,
+	
+	# flush items and slime from subzones into their mother district
+	ewcfg.cmd_flushsubzones: ewcmd.flush_subzones,
+	
+	# Slimernalia
+	# Check your current festivity
+	ewcfg.cmd_festivity: ewcmd.festivity,
+	# Wrap a gift
+	ewcfg.cmd_wrap: ewcmd.wrap,
+	# Unwrap a gift
+	ewcfg.cmd_unwrap: ewcmd.unwrap,
+	# Yo, Slimernalia
+	ewcfg.cmd_yoslimernalia: ewcmd.yoslimernalia
+	
 }
 
 debug = False
@@ -629,7 +709,8 @@ async def on_ready():
 		poi = ewcfg.id_to_poi.get(id_poi)
 		ewmap.landmarks[id_poi] = ewmap.score_map_from(
 			coord_start = poi.coord,
-			user_data = fake_observer
+			user_data = fake_observer,
+			landmark_mode = True
 		)
 
 	ewutils.logMsg("finished landmark precomputation")
@@ -798,6 +879,9 @@ async def on_ready():
 				ewutils.logMsg('Twitch handler hit an exception (continuing): {}'.format(json_string))
 				traceback.print_exc(file = sys.stdout)
 
+		# Flag all users in the Outskirts for PvP
+		await ewutils.flag_outskirts(id_server = server.id)
+
 		# Clear PvP roles from players who are no longer flagged.
 		if (time_now - time_last_pvp) >= ewcfg.update_pvp:
 			time_last_pvp = time_now
@@ -941,11 +1025,11 @@ async def on_ready():
 						if pattern_count > 1:
 							weather_old = market_data.weather
 
-							if random.random() < 0.4:
-								market_data.weather = ewcfg.weather_bicarbonaterain
+							#if random.random() < 0.4:
+							#	market_data.weather = ewcfg.weather_bicarbonaterain
 
 							# Randomly select a new weather pattern. Try again if we get the same one we currently have.
-							while market_data.weather == weather_old:
+							while market_data.weather == weather_old or market_data.weather == ewcfg.weather_bicarbonaterain:
 								pick = random.randrange(len(ewcfg.weather_list))
 								market_data.weather = ewcfg.weather_list[pick].name
 
@@ -977,6 +1061,30 @@ async def on_ready():
 					# Post leaderboards at 6am NLACakaNM time.
 					if market_data.clock == 6:
 						await ewleaderboard.post_leaderboards(client = client, server = server)
+
+						# Depose current slimernalia kingpin
+						old_kingpin_id = ewutils.get_slimernalia_kingpin(server)
+						if old_kingpin_id != None:
+							old_kingpin = EwUser(id_user=old_kingpin_id, id_server=server.id)
+							old_kingpin.slimernalia_kingpin = False
+							old_kingpin.persist()
+							try:
+								old_kingpin_member = server.get_member(old_kingpin.id_user)
+								await ewrolemgr.updateRoles(client = client, member = old_kingpin_member)
+							except:
+								ewutils.logMsg("Error removing kingpin of slimernalia role from {} in server {}.".format(old_kingpin.id_user, server.id))
+
+						# Update the new kingpin of slimernalia
+						new_kingpin = EwUser(id_user=ewutils.get_most_festive(server), id_server=server.id)
+						new_kingpin.slimernalia_kingpin = True
+						new_kingpin.persist()
+						try:
+							new_kingpin_member = server.get_member(new_kingpin.id_user)
+							await ewrolemgr.updateRoles(client = client, member = new_kingpin_member)
+						except:
+							ewutils.logMsg("Error adding kingpin of slimernalia role to user {} in server {}.".format(new_kingpin.id_user, server.id))	
+
+
 
 		except:
 			ewutils.logMsg('An error occurred in the scheduled slime market update task:')
@@ -1143,6 +1251,8 @@ async def on_message(message):
 				return await ewitem.inventory_print(cmd_obj)
 			elif cmd == ewcfg.cmd_inspect:
 				return await ewitem.item_look(cmd_obj)
+			elif cmd in ewcfg.zine_commands:
+				return await ewbook.zine_dm_commands(cmd=cmd_obj)
 			elif poi.is_apartment:
 				return await ewapt.aptCommands(cmd=cmd_obj)
 			else:
@@ -1247,9 +1357,9 @@ async def on_message(message):
 			user_data = EwUser(member = message.author)
 			user_initial_level = user_data.slimelevel
 
-			response = "You get 100,000 slime!"
+			response = "You get 1,000,000 slime!"
 
-			levelup_response = user_data.change_slimes(n = 100000)
+			levelup_response = user_data.change_slimes(n = 1000000)
 
 			was_levelup = True if user_initial_level < user_data.slimelevel else False
 
@@ -1260,9 +1370,9 @@ async def on_message(message):
 			await ewutils.send_message(client, message.channel, ewutils.formatMessage(message.author, response))
 		elif debug == True and cmd == (ewcfg.cmd_prefix + 'getcoin'):
 			user_data = EwUser(member=message.author)
-			user_data.change_slimecoin(n=1000000000, coinsource=ewcfg.coinsource_spending)
+			user_data.change_slimecoin(n=1000000000000, coinsource=ewcfg.coinsource_spending)
 
-			response = "You get 1,000,000,000 slimecoin!"
+			response = "You get 1,000,000,000,000 slimecoin!"
 
 			user_data.persist()
 			await ewutils.send_message(client, message.channel, ewutils.formatMessage(message.author, response))
